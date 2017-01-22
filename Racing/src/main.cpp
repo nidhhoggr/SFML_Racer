@@ -123,8 +123,8 @@ int main()
     Player *player = new Player();
     
     player->createSprite(screen);
-    //sf::Texture playerTexture;
-    //playerTexture.loadFromFile(resourcePath() + "mercedesspritesheets.png");
+    sf::Texture playerTexture;
+    playerTexture.loadFromFile(resourcePath() + "mercedesspritesheets.png");
     player->sprite.setTexture(playerTexture);
     
     while (app.isOpen())
@@ -141,9 +141,23 @@ int main()
         //detect if the racer is moving
         if(Keyboard::isKeyPressed(Keyboard::Up) || Keyboard::isKeyPressed(Keyboard::Down)) {
             
+            //if they are currently driving forward
+            if (Keyboard::isKeyPressed(Keyboard::Up) && speed < 300 && speed >= 0) {
+                speed += .4;
+            }
+            //if they are reversing and APPLY BRAKES
+            else if (Keyboard::isKeyPressed(Keyboard::Up) && speed < 0) {
+                speed += 2;
+            }
             
-            if (Keyboard::isKeyPressed(Keyboard::Up) && speed < 300) speed += .4;
-            if (Keyboard::isKeyPressed(Keyboard::Down) && speed > -300) speed -= .4;
+            //if they are currently driving in reverse
+            if (Keyboard::isKeyPressed(Keyboard::Down) && speed > -300 && speed <= 0) {
+                speed -= .4;
+            }
+            //if they are currently driving forward  and APPLY BRAKES
+            else if (Keyboard::isKeyPressed(Keyboard::Down) && speed > 0) {
+                speed -= 2;
+            }
             
             if (Keyboard::isKeyPressed(Keyboard::W)) H+=100;
             if (Keyboard::isKeyPressed(Keyboard::S)) H-=100;
@@ -167,7 +181,7 @@ int main()
         if(fabs(speed)){
             turnWeight = fmin(speed * .0005, 0.04);
            
-            //printf("Current Speed: %f\n", speed);
+            printf("Current Speed: %f\n", speed);
             //printf("Current Turn Wieght: %f\n", turnWeight);
             
             if (Keyboard::isKeyPressed(Keyboard::Right)) {
@@ -190,8 +204,13 @@ int main()
         app.draw(sBackground);
         int startPos = pos/segL;
         int camH = lines[startPos].y + H;
-        if (speed>0) sBackground.move(-lines[startPos].curve*2,0);
-        if (speed<0) sBackground.move( lines[startPos].curve*2,0);
+        
+        if (speed>0.0f) {
+            sBackground.move( lines[startPos].curve * (speed/100),0);
+        }
+        else if (speed<0.0f) {
+            sBackground.move( lines[startPos].curve * (speed/100),0);
+        }
 
         
         int maxy = screen->height;
