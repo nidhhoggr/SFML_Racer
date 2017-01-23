@@ -121,6 +121,8 @@ int main()
     float turnWeight = 0;
     
     Player *player = new Player();
+    player->playIdleSound();
+    
     
     player->createSprite(screen);
     sf::Texture playerTexture;
@@ -144,18 +146,26 @@ int main()
             //if they are currently driving forward
             if (Keyboard::isKeyPressed(Keyboard::Up) && speed < 300 && speed >= 0) {
                 speed += .4;
+                player->playAccelerateSound();
+            }
+            //player reaches max speed
+            else if (Keyboard::isKeyPressed(Keyboard::Up) && speed >= 300) {
+                player->playIdleSound();
             }
             //if they are reversing and APPLY BRAKES
             else if (Keyboard::isKeyPressed(Keyboard::Up) && speed < 0) {
+                player->playBrakeSound();
                 speed += 2;
             }
             
             //if they are currently driving in reverse
             if (Keyboard::isKeyPressed(Keyboard::Down) && speed > -300 && speed <= 0) {
+                player->playIdleSound();
                 speed -= .4;
             }
             //if they are currently driving forward  and APPLY BRAKES
             else if (Keyboard::isKeyPressed(Keyboard::Down) && speed > 0) {
+                player->playBrakeSound();
                 speed -= 2;
             }
             
@@ -164,6 +174,9 @@ int main()
         
         }
         else {
+            
+            player->playIdleSound();
+            
             if(speed > 0 && speed < .4) {
                 speed = 0;
             }
@@ -193,6 +206,8 @@ int main()
             else {
                 player->steerStraight();
             }
+            
+
         }
         
         pos+=speed;

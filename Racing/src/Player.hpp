@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "Screen.hpp"
 
 #endif /* Player_hpp */
@@ -24,4 +25,12 @@ class Player {
         void steerStraight(void);
         float x;
         sf::Sprite sprite;
+        Player(void);
+        void playIdleSound(void);
+        void playAccelerateSound(void);
+        void playBrakeSound(void);
+    private:
+        sf::Music brakeSound;
+        sf::Music accelerateSound;
+        sf::Music idleSound;
 };

@@ -20,6 +20,9 @@
 		6EBC084B1E34842A00C8EF4E /* mercedesspritesheets.png in Resources */ = {isa = PBXBuildFile; fileRef = 6EBC084A1E34842A00C8EF4E /* mercedesspritesheets.png */; };
 		6EBC084E1E34892400C8EF4E /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EBC084C1E34892400C8EF4E /* Player.cpp */; };
 		6EBC08541E34AB0A00C8EF4E /* Screen.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6EBC08531E34AB0A00C8EF4E /* Screen.cpp */; };
+		6EBC085F1E358ACA00C8EF4E /* car1-accelerating.ogg in Resources */ = {isa = PBXBuildFile; fileRef = 6EBC085D1E358ACA00C8EF4E /* car1-accelerating.ogg */; };
+		6EBC08601E358ACA00C8EF4E /* car1-idle.ogg in Resources */ = {isa = PBXBuildFile; fileRef = 6EBC085E1E358ACA00C8EF4E /* car1-idle.ogg */; };
+		6EBC08621E358B5E00C8EF4E /* car1-braking.ogg in Resources */ = {isa = PBXBuildFile; fileRef = 6EBC08611E358B5E00C8EF4E /* car1-braking.ogg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +44,9 @@
 		6EBC084D1E34892400C8EF4E /* Player.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Player.hpp; path = src/Player.hpp; sourceTree = "<group>"; };
 		6EBC08521E34AB0A00C8EF4E /* Screen.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = Screen.hpp; path = src/Screen.hpp; sourceTree = "<group>"; };
 		6EBC08531E34AB0A00C8EF4E /* Screen.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Screen.cpp; path = src/Screen.cpp; sourceTree = "<group>"; };
+		6EBC085D1E358ACA00C8EF4E /* car1-accelerating.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; name = "car1-accelerating.ogg"; path = "audio/car1-accelerating.ogg"; sourceTree = "<group>"; };
+		6EBC085E1E358ACA00C8EF4E /* car1-idle.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; name = "car1-idle.ogg"; path = "audio/car1-idle.ogg"; sourceTree = "<group>"; };
+		6EBC08611E358B5E00C8EF4E /* car1-braking.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; name = "car1-braking.ogg"; path = "audio/car1-braking.ogg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +103,9 @@
 		6EBC08131E341BA500C8EF4E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6EBC08611E358B5E00C8EF4E /* car1-braking.ogg */,
+				6EBC085D1E358ACA00C8EF4E /* car1-accelerating.ogg */,
+				6EBC085E1E358ACA00C8EF4E /* car1-idle.ogg */,
 				6EBC084A1E34842A00C8EF4E /* mercedesspritesheets.png */,
 				6EBC08461E34218D00C8EF4E /* bg.png */,
 				6EBC08381E3420E200C8EF4E /* 7.png */,
@@ -169,9 +178,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				6EBC08411E3420E200C8EF4E /* 5.png in Resources */,
+				6EBC08621E358B5E00C8EF4E /* car1-braking.ogg in Resources */,
 				6EBC08401E3420E200C8EF4E /* 6.png in Resources */,
 				6EBC084B1E34842A00C8EF4E /* mercedesspritesheets.png in Resources */,
+				6EBC08601E358ACA00C8EF4E /* car1-idle.ogg in Resources */,
 				6EBC08471E34218D00C8EF4E /* bg.png in Resources */,
+				6EBC085F1E358ACA00C8EF4E /* car1-accelerating.ogg in Resources */,
 				6EBC08421E3420E200C8EF4E /* 2.png in Resources */,
 				6EBC08441E3420E200C8EF4E /* 3.png in Resources */,
 				6EBC08431E3420E200C8EF4E /* 4.png in Resources */,
