@@ -216,6 +216,8 @@ int main()
         }
         
     
+        
+        
         pos+=player->speed;
         
     
@@ -231,11 +233,19 @@ int main()
         int startPos = pos/segL;
         int camH = lines[startPos].y + H;
         
-        if (player->speed > 0.0f) {
+        
+        if(fabsf(player->speed)) {
+            
             sBackground.move( lines[startPos].curve * (player->speed/100.0f),0);
-        }
-        else if (player->speed < 0.0f) {
-            sBackground.move( lines[startPos].curve * (player->speed/100.0f),0);
+            
+            
+            //part that forces the car to stray from track when the road cruves
+            if(player->speed > 0.0f) {
+                player->x -= (lines[startPos].curve * (player->speed / 8000.0f));
+            }
+            else if(player->speed < 0.0f) {
+                player->x += (lines[startPos].curve * (player->speed / 8000.0f));
+            }
         }
 
         
@@ -264,9 +274,10 @@ int main()
             drawQuad(app, grass, 0, p.Y, screen->width, 0, l.Y, screen->width);
             drawQuad(app, rumble, p.X, p.Y, p.W*1.2, l.X, l.Y, l.W*1.2);
             drawQuad(app, road,  p.X, p.Y, p.W, l.X, l.Y, l.W);
+            //printf("ROAD COORDS %f %f %f %f %f %f", p.X, p.Y, p.W, l.X, l.Y, l.W);
         }
         
-        
+        printf("%f\n", lines[startPos].curve);
         
         ////////draw objects////////
         for(int n=startPos+300; n>startPos; n--)
