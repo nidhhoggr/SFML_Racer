@@ -57,6 +57,14 @@ void Player::playIdleSound(void) {
     }
     
     idleSound.setLoop(true);
+
+    if(speed > 200.0f) {
+        idleSound.setPitch(1.4f);
+    }
+    else {
+        idleSound.setPitch(1.0f);
+    }
+    
     idleSound.play();
 }
 
@@ -84,6 +92,14 @@ void Player::playAccelerateSound(void) {
     else if(idleSound.getStatus() == idleSound.Playing) {
         idleSound.stop();
     }
+    
+    if(speed > 200.0f) {
+       accelerateSound.setPitch(1.2f);
+    }
+    else {
+       accelerateSound.setPitch(1.0f);
+    }
+    
     accelerateSound.play();
 }
 

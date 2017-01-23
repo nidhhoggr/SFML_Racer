@@ -200,11 +200,14 @@ int main()
            
             printf("Current Speed: %f\n", player->speed);
             //printf("Current Turn Wieght: %f\n", turnWeight);
+        
             
-            if (Keyboard::isKeyPressed(Keyboard::Right)) {
+            if ((Keyboard::isKeyPressed(Keyboard::Right) && (player->speed > 0.0f)) ||
+                (Keyboard::isKeyPressed(Keyboard::Left) && (player->speed < 0.0f))) {
                 player->turnRight(turnWeight);
             }
-            else if (Keyboard::isKeyPressed(Keyboard::Left)) {
+            else if ((Keyboard::isKeyPressed(Keyboard::Left) && (player->speed > 0.0f)) ||
+                (Keyboard::isKeyPressed(Keyboard::Right) && (player->speed < 0.0f))) {
                 player->turnLeft(turnWeight);
             }
             else {
