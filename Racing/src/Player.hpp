@@ -14,9 +14,6 @@
 #include <SFML/Audio.hpp>
 #include "Screen.hpp"
 
-#endif /* Player_hpp */
-
-
 class Player {
     public:
         void createSprite(const Screen *screen);
@@ -24,6 +21,7 @@ class Player {
         void turnLeft(const float turnWeight);
         void steerStraight(void);
         float x;
+        float speed;
         sf::Sprite sprite;
         Player(void);
         void playIdleSound(void);
@@ -34,3 +32,5 @@ class Player {
         sf::Music accelerateSound;
         sf::Music idleSound;
 };
+
+#endif /* Player_hpp */

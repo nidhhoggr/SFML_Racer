@@ -20,14 +20,11 @@ void Player::createSprite(const Screen *screen) {
     playerTexture.loadFromFile(filePath);
     playerTexture.setSmooth(true);
     
-    sf::Sprite playerSprite;
-    playerSprite.setTexture(playerTexture);
+    sprite.setTexture(playerTexture);
 
-    playerSprite.setTextureRect(sf::IntRect(407, 0, 40, 43));
-    playerSprite.setPosition(screen->width/2 - 20, 500);
-    playerSprite.setScale(3, 3);
-    
-    this->sprite = playerSprite;
+    sprite.setTextureRect(sf::IntRect(407, 0, 40, 43));
+    sprite.setPosition(screen->width/2 - 20, 500);
+    sprite.setScale(3, 3);
 }
 
 void Player::turnRight(const float turnWeight) {
@@ -106,5 +103,6 @@ Player::Player() {
     if (!idleSound.openFromFile(resourcePath() + "car1-idle.ogg")) {
     }
     
+    speed = 0.0f;
 }
 

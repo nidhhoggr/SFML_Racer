@@ -7,3 +7,19 @@
 //
 
 #include "Screen.hpp"
+#include "Player.hpp"
+#include "ResourcePath.hpp"
+#include <SFML/Graphics.hpp>
+#include <math.h>
+
+
+Screen::Screen(void) {
+    // Create a graphical text to display
+    
+    if (!font.loadFromFile(resourcePath() + "Road_Rage.otf")) {
+        return EXIT_FAILURE;
+    }
+
+    width = 1024;
+    height = 768;
+}

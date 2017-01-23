@@ -23,6 +23,7 @@
 		6EBC085F1E358ACA00C8EF4E /* car1-accelerating.ogg in Resources */ = {isa = PBXBuildFile; fileRef = 6EBC085D1E358ACA00C8EF4E /* car1-accelerating.ogg */; };
 		6EBC08601E358ACA00C8EF4E /* car1-idle.ogg in Resources */ = {isa = PBXBuildFile; fileRef = 6EBC085E1E358ACA00C8EF4E /* car1-idle.ogg */; };
 		6EBC08621E358B5E00C8EF4E /* car1-braking.ogg in Resources */ = {isa = PBXBuildFile; fileRef = 6EBC08611E358B5E00C8EF4E /* car1-braking.ogg */; };
+		6EBC08641E359A9C00C8EF4E /* Road_Rage.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6EBC08631E359A9C00C8EF4E /* Road_Rage.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		6EBC085D1E358ACA00C8EF4E /* car1-accelerating.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; name = "car1-accelerating.ogg"; path = "audio/car1-accelerating.ogg"; sourceTree = "<group>"; };
 		6EBC085E1E358ACA00C8EF4E /* car1-idle.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; name = "car1-idle.ogg"; path = "audio/car1-idle.ogg"; sourceTree = "<group>"; };
 		6EBC08611E358B5E00C8EF4E /* car1-braking.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; name = "car1-braking.ogg"; path = "audio/car1-braking.ogg"; sourceTree = "<group>"; };
+		6EBC08631E359A9C00C8EF4E /* Road_Rage.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Road_Rage.otf; path = images/Road_Rage.otf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 		6EBC08131E341BA500C8EF4E /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6EBC08631E359A9C00C8EF4E /* Road_Rage.otf */,
 				6EBC08611E358B5E00C8EF4E /* car1-braking.ogg */,
 				6EBC085D1E358ACA00C8EF4E /* car1-accelerating.ogg */,
 				6EBC085E1E358ACA00C8EF4E /* car1-idle.ogg */,
@@ -189,6 +192,7 @@
 				6EBC08431E3420E200C8EF4E /* 4.png in Resources */,
 				6EBC083F1E3420E200C8EF4E /* 7.png in Resources */,
 				6EBC08451E3420E200C8EF4E /* 1.png in Resources */,
+				6EBC08641E359A9C00C8EF4E /* Road_Rage.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

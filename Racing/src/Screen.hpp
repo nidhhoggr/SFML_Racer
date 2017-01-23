@@ -9,11 +9,14 @@
 #ifndef Screen_hpp
 #define Screen_hpp
 
-#include <stdio.h>
+#include <SFML/Graphics.hpp>
 
-struct Screen {
-    int width = 1024;
-    int height = 768;
+class Screen {
+public:
+    Screen(void);
+    int width;
+    int height;
+    sf::Font font;
 };
 
 

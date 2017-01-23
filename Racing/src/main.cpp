@@ -11,7 +11,7 @@ using namespace sf;
 
 int roadW = 2000;
 int segL = 200; //segment length
-float camD = 0.84f; //camera depth
+float camD = .89f; //camera depth
 
 void drawQuad(RenderWindow &w, Color c, int x1,int y1,int w1,int x2,int y2,int w2)
 {
@@ -73,7 +73,7 @@ int main()
 {
     Screen *screen = new Screen();
     
-    RenderWindow app(VideoMode(screen->width, screen->height), "Outrun Racing!");
+    RenderWindow app(VideoMode(screen->width, screen->height), "");
     app.setFramerateLimit(60);
     
     Texture t[50];
@@ -115,10 +115,14 @@ int main()
     }
     
     int N = lines.size();
-    int pos = 0;
+    float pos = 0.0f;
     int H = 1500;
-    float speed=0;
     float turnWeight = 0;
+    char speedIndicator[8];
+    
+    
+    sf::Text speedText("0", screen->font, 50);
+    speedText.setPosition(screen->width - 200, screen->height - 80);
     
     Player *player = new Player();
     player->playIdleSound();
@@ -144,29 +148,29 @@ int main()
         if(Keyboard::isKeyPressed(Keyboard::Up) || Keyboard::isKeyPressed(Keyboard::Down)) {
             
             //if they are currently driving forward
-            if (Keyboard::isKeyPressed(Keyboard::Up) && speed < 300 && speed >= 0) {
-                speed += .4;
+            if (Keyboard::isKeyPressed(Keyboard::Up) && player->speed < 300.0f && player->speed >= 0.0f) {
+                player->speed += .4f;
                 player->playAccelerateSound();
             }
             //player reaches max speed
-            else if (Keyboard::isKeyPressed(Keyboard::Up) && speed >= 300) {
+            else if (Keyboard::isKeyPressed(Keyboard::Up) && player->speed >= 300.0f) {
                 player->playIdleSound();
             }
             //if they are reversing and APPLY BRAKES
-            else if (Keyboard::isKeyPressed(Keyboard::Up) && speed < 0) {
+            else if (Keyboard::isKeyPressed(Keyboard::Up) && player->speed < 0.0f) {
                 player->playBrakeSound();
-                speed += 2;
+                player->speed += 2.0f;
             }
             
             //if they are currently driving in reverse
-            if (Keyboard::isKeyPressed(Keyboard::Down) && speed > -300 && speed <= 0) {
+            if (Keyboard::isKeyPressed(Keyboard::Down) && player->speed > -300.0f && player->speed <= 0.0f) {
                 player->playIdleSound();
-                speed -= .4;
+                player->speed -= .4f;
             }
             //if they are currently driving forward  and APPLY BRAKES
-            else if (Keyboard::isKeyPressed(Keyboard::Down) && speed > 0) {
+            else if (Keyboard::isKeyPressed(Keyboard::Down) && player->speed > 0.0f) {
                 player->playBrakeSound();
-                speed -= 2;
+                player->speed -= 2.0f;
             }
             
             if (Keyboard::isKeyPressed(Keyboard::W)) H+=100;
@@ -177,24 +181,24 @@ int main()
             
             player->playIdleSound();
             
-            if(speed > 0 && speed < .4) {
-                speed = 0;
+            if(player->speed > 0.0f && player->speed < .4f) {
+                player->speed = 0.0f;
             }
-            else if(speed > 0) {
-                speed -= .8;
+            else if(player->speed > 0.0f) {
+                player->speed -= .8f;
             }
-            else if(speed < 0 && speed > -.4) {
-                speed  = 0;
+            else if(player->speed < 0.0f && player->speed > -.4f) {
+                player->speed  = 0.0f;
             }
-            else if(speed < 0) {
-                speed += .8;
+            else if(player->speed < 0.0f) {
+                player->speed += .8;
             }
         }
         
-        if(fabs(speed)){
-            turnWeight = fmin(speed * .0005, 0.04);
+        if(fabs(player->speed)){
+            turnWeight = fmin(player->speed * .0005f, 0.04f);
            
-            printf("Current Speed: %f\n", speed);
+            printf("Current Speed: %f\n", player->speed);
             //printf("Current Turn Wieght: %f\n", turnWeight);
             
             if (Keyboard::isKeyPressed(Keyboard::Right)) {
@@ -206,32 +210,35 @@ int main()
             else {
                 player->steerStraight();
             }
-            
-
         }
         
-        pos+=speed;
-        while (pos >= N*segL) pos-=N*segL;
-        while (pos < 0) pos += N*segL;
+    
+        pos+=player->speed;
         
-       
+    
+        printf("POS BEFORE: %f, %d, %f\n", pos, (N*segL), player->x);
+        
+        while (pos >= N*segL) pos-=N*segL;
+        while (pos < 0.0f) pos += N*segL;
+        
+        printf("POS AFTER: %f, %d, %f\n", pos, (N*segL), player->x);
+        
         app.clear(Color(105,205,4));
         app.draw(sBackground);
         int startPos = pos/segL;
         int camH = lines[startPos].y + H;
         
-        if (speed>0.0f) {
-            sBackground.move( lines[startPos].curve * (speed/100),0);
+        if (player->speed > 0.0f) {
+            sBackground.move( lines[startPos].curve * (player->speed/100.0f),0);
         }
-        else if (speed<0.0f) {
-            sBackground.move( lines[startPos].curve * (speed/100),0);
+        else if (player->speed < 0.0f) {
+            sBackground.move( lines[startPos].curve * (player->speed/100.0f),0);
         }
 
         
         int maxy = screen->height;
         float x=0,dx=0;
-        
-        
+    
         
         ///////draw road////////
         for(int n = startPos; n<startPos+300; n++)
@@ -256,12 +263,17 @@ int main()
             drawQuad(app, road,  p.X, p.Y, p.W, l.X, l.Y, l.W);
         }
         
+        
+        
         ////////draw objects////////
         for(int n=startPos+300; n>startPos; n--)
             lines[n%N].drawSprite(app, screen);
         
         app.draw(player->sprite);
-
+        
+        sprintf(speedIndicator, "%.0f kmh", ceilf(player->speed));
+        speedText.setString(speedIndicator);
+        app.draw(speedText);
         
         app.display();
     }
